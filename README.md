@@ -92,6 +92,9 @@ the placeholder where others left the cell empty. Non-null does not mean present
 - Appeals are rare, so overturn rates for smaller insurers are noisy.
 - The outcome is a bounded percentage and OLS doesn't know that. Not a practical
   problem at observed values, but a simplification worth naming.
+- All claims and appeals data is self-reported by issuers to CMS, not independently
+  audited. Differences between insurers may partly reflect differences in how they
+  count and classify denials rather than differences in behaviour.
 
 ## Running it
 
