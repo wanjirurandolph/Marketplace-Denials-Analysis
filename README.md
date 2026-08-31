@@ -17,7 +17,7 @@ rate are essentially uncorrelated (r = 0.06).
 
 ![Denial rate vs overturn rate](figures/denial_vs_overturn.png)
 
-The regression agrees once controls are added. Denial rate is not significant
+A Multiple Linear regression tells the same story. Denial rate is not significant
 (p = 0.44) holding appeal rate and insurer size constant, and the model explains
 about 4% of the variation in overturn rates (R² = 0.042, F-test p = 0.14). Only
 appeal rate reaches significance (coefficient −1.78, p = 0.04) — insurers where a
@@ -68,7 +68,8 @@ https://www.cms.gov/marketplace/resources/data/public-use-files
 3. Converted measure columns to numeric, counting each missing marker first.
 4. Filtered to issuers above 1,000 in-network claims → 131 with both rates usable.
 5. Built denial rate, appeal rate, and log claim volume.
-6. Correlation, then OLS with residual diagnostics.
+6. Pearson correlation, then multiple linear regression (OLS) of overturn rate on
+   denial rate, appeal rate, and log claim volume, with residual diagnostics.
 
 ## Data quality notes
 
