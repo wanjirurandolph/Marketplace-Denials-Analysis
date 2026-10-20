@@ -9,33 +9,31 @@ A denial rate alone can't distinguish the two. An insurer applying narrow but
 correctly-administered coverage rules and an insurer making frequent review errors
 can both post high denial rates.
 
-The appeal overturn rate separates them. When an insurer reverses a large share of
-the denials members appeal, its initial determinations weren't holding up under
-review — a signal of process error rather than policy stringency.
+The appeal overturn rate can help tell them apart. If an insurer reverses a large
+share of the denials members appeal, some of its initial decisions may not be
+holding up under review. It is an imperfect signal, though: an appeal can also
+succeed because new information was provided, not because the original decision
+was wrong.
 
 ## What I found
 
-**They don't move together.** Across 131 insurers, denial rate and appeal overturn
-rate are essentially uncorrelated (Pearson r = 0.06; Spearman ρ = 0.06, p = 0.51).
+**No clear link.** Across 131 insurers, denial rate and appeal overturn rate are
+essentially uncorrelated (Pearson r = 0.06; Spearman ρ = 0.06, p = 0.51).
 
 ![Denial rate vs overturn rate](figures/denial_vs_overturn.png)
 
-A multiple linear regression tells the same story. Denial rate is not significant
-(p = 0.44) holding appeal rate and insurer size constant, and the model explains
-about 4% of the variation in overturn rates (R² = 0.042, F-test p = 0.14). Only
-appeal rate reaches significance (coefficient −1.78, p = 0.04) — insurers where a
-larger share of denials get appealed tend to overturn a smaller share — though that
-sits inside a model that isn't jointly significant, so it's suggestive at best.
+The regression gives the same answer with appeal rate and insurer size held
+constant. Denial rate is not significant (p = 0.43), and the model explains about
+4% of the variation in overturn rates (R² = 0.039, F-test p = 0.17). Appeal rate is
+borderline (coefficient −2.53, p = 0.053): insurers where a larger share of denials
+get appealed tend to overturn a smaller share, but this is suggestive only.
 
-Residuals are patternless and centred on zero, and a Q-Q plot shows they are roughly
-normal, so this isn't a misspecified model.
-The predictors simply don't carry signal.
+Diagnostics show no major problems, so the null result isn't explained by a badly
+fitting model.
 
-
-
-**Takeaway:** a high denial rate does not by itself indicate an inaccurate review
-process. Overturn rates range from 0% to nearly 90% across these insurers, but no
-insurer-level characteristic in this file accounts for that spread.
+**Takeaway:** in this data, a high denial rate doesn't predict how often denials are
+overturned. An overturn isn't always a review error, since appeals can bring new
+information. Claim-level data would show which appeals succeed and why.
 
 ## Why it matters
 
@@ -59,7 +57,8 @@ https://www.cms.gov/marketplace/resources/data/public-use-files
 
 - HealthCare.gov states only — no state-based marketplaces (California, New York),
   and no employer group plans, which cover most insured people under 65.
-- In-network claims only.
+- Denial rate uses in-network claims; appeal rate uses all denied claims (in and
+  out of network), matching CMS.
 - Denials here include billing errors, duplicate submissions, and eligibility
   issues alongside medical necessity denials, so a raw denial rate is not a measure
   of plan quality. CMS says so in its file disclaimer.
