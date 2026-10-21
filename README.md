@@ -56,7 +56,7 @@ https://www.cms.gov/marketplace/resources/data/public-use-files
 **Scope limits:**
 
 - HealthCare.gov states only — no state-based marketplaces (California, New York),
-  and no employer group plans, which cover most insured people under 65.
+  and no employer group plans.
 - Denial rate uses in-network claims; appeal rate uses all denied claims (in and
   out of network), matching CMS.
 - Denials here include billing errors, duplicate submissions, and eligibility
@@ -81,6 +81,10 @@ https://www.cms.gov/marketplace/resources/data/public-use-files
 
 ## Data quality notes
 
+**Sanity check.** The median denial rate across the 131 insurers is about 19%, close to
+the 19% of in-network claims that [KFF found HealthCare.gov insurers denied in 2024](https://www.kff.org/patient-consumer-protections/claims-denials-and-appeals-in-aca-marketplace-plans-in-2024/),
+using the same CMS file. This suggests the cleaning and filtering did not distort the data.
+
 **Four kinds of missing.** The file uses `*` (not available), `**` (suppressed for
 small counts), `***` (not required for this plan type), and `N/A` (issuer new to the
 exchange). These aren't interchangeable, and they're why most count columns load as
@@ -90,7 +94,7 @@ text rather than numbers.
 systematically the small ones. Findings here describe larger insurers.
 
 **An encoding artifact.** Two plan-level columns showed 97 more non-null values than
-their neighbours. Those rows contain `***` rather than counts: some issuers typed
+their neighbors. Those rows contain `***` rather than counts: some issuers typed
 the placeholder where others left the cell empty. Non-null does not mean present.
 
 ## Caveats
@@ -103,13 +107,12 @@ the placeholder where others left the cell empty. Non-null does not mean present
   a simplification worth naming.
 - All claims and appeals data is self-reported by issuers to CMS, not independently
   audited. Differences between insurers may partly reflect differences in how they
-  count and classify denials rather than differences in behaviour.
+  count and classify denials rather than differences in behavior.
 
 ## Next steps
 
 - Binomial regression weighted by number of appeals, built for "overturned out of
   appealed" outcomes.
-- Sensitivity check on the claim-volume cutoff (500 and 5,000 instead of 1,000).
 - Add state-based marketplaces and employer plans if comparable data becomes available.
 
 ## Running it
